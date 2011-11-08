@@ -54,4 +54,26 @@ class TestDie < Test::Unit::TestCase
     Process.expects(:kill).with("KILL", 249)
     d.run
   end
+
+  def test_different_signal
+    d = Die.new(:signal => "ABRT")
+    d.stubs(:processes).returns([
+      "42 /usr/sbin/httpd -D FOREGROUND",
+      "249 /usr/sbin/httpd -D FOREGROUND"
+    ])
+    d.stubs(:process_hash).returns({
+      1 => ["42", "/usr/sbin/httpd", "-D", "FOREGROUND"],
+      2 => ["249", "/usr/sbin/httpd", "-D", "FOREGROUND"]
+    })
+    $stdin.stubs(:gets).returns("1 2")
+    Process.expects(:kill).with("ABRT", 42)
+    Process.expects(:kill).with("ABRT", 249)
+    d.run
+  end
+
+  def test_exception_on_unknown_signal
+    assert_raise(Exception) do
+      Die.new(:signal => "DONKEY")
+    end
+  end
 end
