@@ -17,8 +17,8 @@ Jeweler::Tasks.new do |gem|
   gem.name = "die"
   gem.homepage = "http://github.com/unclebilly/die"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Kill one or more processes by command name}
+  gem.description = %Q{Kill one or more processes by command name via an interactive script.  Die will find processes that match a given command name, and give you the opportunity to kill one, several, all, or none of them.}
   gem.email = "billy.reisinger@gmail.com"
   gem.authors = ["Billy Reisinger"]
   # dependencies defined in Gemfile
@@ -32,22 +32,4 @@ Rake::TestTask.new(:test) do |test|
   test.verbose = true
 end
 
-require 'rcov/rcovtask'
-Rcov::RcovTask.new do |test|
-  test.libs << 'test'
-  test.pattern = 'test/**/test_*.rb'
-  test.verbose = true
-  test.rcov_opts << '--exclude "gems/*"'
-end
-
 task :default => :test
-
-require 'rake/rdoctask'
-Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
-
-  rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "die #{version}"
-  rdoc.rdoc_files.include('README*')
-  rdoc.rdoc_files.include('lib/**/*.rb')
-end
