@@ -21,6 +21,7 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{Kill one or more processes by command name via an interactive script.  Die will find processes that match a given command name, and give you the opportunity to kill one, several, all, or none of them.}
   gem.email = "billy.reisinger@gmail.com"
   gem.authors = ["Billy Reisinger"]
+  gem.executables = ['die']
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new

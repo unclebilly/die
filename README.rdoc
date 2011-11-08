@@ -1,6 +1,6 @@
 = die
 
-Description goes here.
+Kill one or more processes matching a given name via an interactive script. 
 
 == Contributing to die
  
