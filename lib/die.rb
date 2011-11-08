@@ -6,7 +6,7 @@ class Die
   def kill_phash_entry(entry)
     pid = entry[0].strip.to_i
     Process.kill(self.signal, pid)
-    puts "#{self.signal} #{pid} #{entry[1]}"
+    $stdout.puts "#{self.signal} #{pid} #{entry[1]}"
   end
 
   def processes
@@ -37,10 +37,10 @@ class Die
   def run
     unless processes.empty?
       p_hash = process_hash
-      puts
-      puts processes
-      puts
-      puts " Type 'all' to #{self.signal} 'em all, or the numbers (separated by a space) to kill some. Type anything else to quit."
+      $stdout.puts
+      $stdout.puts processes
+      $stdout.puts
+      $stdout.puts " Type 'all' to #{self.signal} 'em all, or the numbers (separated by a space) to kill some. Type anything else to quit."
       inp = $stdin.gets.strip
       if(inp =~ /^a(ll)?/i)
         p_hash.each do |k,v|
@@ -52,24 +52,24 @@ class Die
         end
       end
     else
-      puts "No processes matching #{ARGV[0]}"
+      $stdout.puts "No processes matching #{ARGV[0]}"
     end
   end
 
   def self.run_from_options
-    opts = {:signal => "KILL", :search => ARGV[0..-1]}
+    opts = {}
     o = OptionParser.new do |opt|
       opt.banner = self.help
       opt.on("-v", "--version", "Show version") do
-        puts "#{self.to_s} #{File.read(File.join(File.dirname(__FILE__, '..', 'VERSION')))}"
-        exit
+        $stdout.puts "#{self.to_s} #{File.read(File.join(File.dirname(__FILE__), '..', 'VERSION'))}"
+        return false
       end
       opt.on("-s", "--signal SIGNAL", "Signal (defaults to KILL)") do |sig|
-        puts sig, '00' * 100
         opts[:signal] = sig
       end
     end
     o.parse!
+    opts[:search] = ARGV[0..-1]
     self.new(opts).run
   end
 

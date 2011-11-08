@@ -76,4 +76,11 @@ class TestDie < Test::Unit::TestCase
       Die.new(:signal => "DONKEY")
     end
   end
+
+  def test_version
+    version = File.read(File.join(File.dirname(__FILE__), '..', 'VERSION'))
+    $stdout.expects(:puts).with('Die ' + version)
+    ARGV << "-v"
+    Die.run_from_options
+  end
 end
