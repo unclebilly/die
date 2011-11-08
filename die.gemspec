@@ -5,11 +5,11 @@
 
 Gem::Specification.new do |s|
   s.name = %q{die}
-  s.version = "0.1.0"
+  s.version = "0.2.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Billy Reisinger"]
-  s.date = %q{2011-11-07}
+  s.date = %q{2011-11-08}
   s.default_executable = %q{die}
   s.description = %q{Kill one or more processes by command name via an interactive script.  Die will find processes that match a given command name, and give you the opportunity to kill one, several, all, or none of them.}
   s.email = %q{billy.reisinger@gmail.com}
