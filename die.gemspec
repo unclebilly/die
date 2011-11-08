@@ -28,6 +28,7 @@ Gem::Specification.new do |s|
     "Rakefile",
     "VERSION",
     "bin/die",
+    "die.gemspec",
     "lib/die.rb",
     "test/helper.rb",
     "test/test_die.rb"
